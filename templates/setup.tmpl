@@ -1,0 +1,9 @@
+#!/bin/bash
+talosctl gen config ${clustername} https://${ masterip }:6443 --output-dir ./files
+%{ for i in masters ~}
+talosctl apply-config --insecure --nodes ${ i } --file ./files/controlplane.yaml
+%{ endfor ~}
+%{ for i in workers ~}
+talosctl apply-config --insecure --nodes ${ i } --file ./files/worker.yaml
+%{ endfor ~}
+

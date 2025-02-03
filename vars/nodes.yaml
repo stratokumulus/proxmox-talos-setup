@@ -1,0 +1,49 @@
+nodes:
+  master0:
+    name: talos-ctrl-0
+    type: master
+    ip: 192.168.2.210
+    macaddr: 7A:00:00:00:05:00
+    cores: 4
+    ram: 16384
+    vmid: 210
+  master1:
+    name: talos-ctrl-1
+    type: master
+    ip: 192.168.2.211
+    macaddr: 7A:00:00:00:05:01
+    cores: 4
+    ram: 16384
+    vmid: 211
+  master2:
+    name: talos-ctrl-2
+    type: master
+    ip: 192.168.2.212
+    macaddr: 7A:00:00:00:05:02
+    cores: 4
+    ram: 16384
+    vmid: 212
+  worker0:
+    name: talos-worker-0
+    type: worker
+    ip: 192.168.2.213
+    macaddr: 7A:00:00:00:05:03
+    cores: 4
+    ram: 16384
+    vmid: 220
+  worker1:
+    name: talos-worker-1
+    type: worker
+    ip: 192.168.2.214
+    macaddr: 7A:00:00:00:05:04
+    cores: 4
+    ram: 16384
+    vmid: 221
+  worker2:
+    name: talos-worker-2
+    type: worker
+    ip: 192.168.2.215
+    macaddr: 7A:00:00:00:05:05
+    cores: 4
+    ram: 16384
+    vmid: 222
