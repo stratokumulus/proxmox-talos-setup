@@ -9,13 +9,15 @@ provider "proxmox" {
 }
 
 resource "proxmox_vm_qemu" "talos-nodes" {
+  depends_on  = [proxmox_pool.talospool]
   for_each    = local.all_nodes
   name        = each.value.name
   agent       = 1 # I'm using the QEMU agent enabled image from Talos. Necessary to read the IP address after creation of the VM
   vmid        = try(each.value.vmid, null)
   target_node = var.target_host
   boot        = "order=ide2;scsi0;net0" # "c" by default, which renders the coreos35 clone non-bootable. "cdn" is HD, DVD and Network
-  tags        = "talos,${each.value.name}"
+  tags        = "talos"
+  pool        = var.pool
   vm_state    = "started" # start VM by default
   cores       = each.value.cores
   memory      = each.value.ram
@@ -50,3 +52,8 @@ resource "proxmox_vm_qemu" "talos-nodes" {
   }
 }
 
+# Took me a while to figure out why this wasn't working : the user/token must have pool.Audit privilege
+resource "proxmox_pool" "talospool" {
+  poolid  = var.pool
+  comment = "Dev Talos Cluster"
+}

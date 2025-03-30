@@ -43,7 +43,7 @@ variable "image" {
 variable "pool" {
   type        = string
   description = "In what pool is this deployed ?"
-  default     = "lab-kubernetes"
+  default     = "talos-dev"
 }
 
 variable "ansible_password" {
